@@ -1,9 +1,21 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>Static Files</title>
-    </head>
-    <body>
-        <p>This is an example of serving static files with axum and shuttle.</p>
-    </body>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Todo App</title>
+    <link rel="stylesheet" href="assets/style.css" />
+  </head>
+  <body>
+    <h1>Todo App</h1>
+
+    <h2>Add Todo</h2>
+    <input type="text" id="todoInput" placeholder="Enter a new todo" />
+    <button onclick="addTodo()">Add</button>
+
+    <h2>Todos</h2>
+    <ul id="todoList"></ul>
+
+    <script src="assets/script.js"></script>
+  </body>
 </html>
