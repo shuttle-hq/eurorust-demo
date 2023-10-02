@@ -1,4 +1,9 @@
-use axum::{extract::Path, http::StatusCode, response::IntoResponse, Extension, Json};
+use axum::{
+    extract::{Path, State},
+    http::StatusCode,
+    response::IntoResponse,
+    Json,
+};
 use serde::{Deserialize, Serialize};
 use sqlx::{FromRow, PgPool};
 
@@ -15,7 +20,7 @@ pub struct Todo {
 
 pub async fn retrieve(
     Path(id): Path<i32>,
-    Extension(pool): Extension<PgPool>,
+    State(pool): State<PgPool>,
 ) -> Result<impl IntoResponse, impl IntoResponse> {
     match sqlx::query_as::<_, Todo>("SELECT * FROM todos WHERE id = $1")
         .bind(id)
@@ -28,7 +33,7 @@ pub async fn retrieve(
 }
 
 pub async fn add(
-    Extension(pool): Extension<PgPool>,
+    State(pool): State<PgPool>,
     Json(data): Json<TodoNew>,
 ) -> Result<impl IntoResponse, impl IntoResponse> {
     match sqlx::query_as::<_, Todo>("INSERT INTO todos (note) VALUES ($1) RETURNING id, note")
