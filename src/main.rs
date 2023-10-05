@@ -8,6 +8,8 @@ use axum::{
 use serde::{Deserialize, Serialize};
 use shuttle_runtime::CustomError;
 use sqlx::{Executor, FromRow, PgPool};
+use std::path::PathBuf;
+use tower_http::services::ServeDir;
 
 #[derive(Debug, Deserialize)]
 pub struct TodoNew {
@@ -64,7 +66,8 @@ async fn shuttle_main(#[shuttle_shared_db::Postgres] pool: PgPool) -> shuttle_ax
         .route("/", get(hello_shuttle))
         .route("/todo", post(add_todo))
         .route("/todo/:id", get(retrieve_todo))
-        .with_state(pool);
+        .with_state(pool)
+        .nest_service("/assets", ServeDir::new(PathBuf::from("assets")));
 
     Ok(router.into())
 }
