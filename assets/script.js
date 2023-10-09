@@ -1,57 +1,33 @@
-const todoInput = document.getElementById("todoInput");
-const todoList = document.getElementById("todoList");
+const greetingMessage = document.getElementById('greetingMessage');
 
-async function fetchTodos() {
+// Fetch the greetings total and set it in the HTML.
+async function fetchGreetings() {
   try {
-    const todoIds = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-    todoList.innerHTML = "";
-    const first10TodoIds = todoIds.slice(0, 10);
-    for (const todoId of first10TodoIds) {
-      const detailedTodo = await fetchTodoById(todoId);
-      if (detailedTodo) {
-        const listItem = document.createElement("li");
-        listItem.textContent = detailedTodo.note;
-        todoList.appendChild(listItem);
-      }
-    }
-  } catch (error) {
-    console.error("Error fetching todos:", error);
-  }
-}
+    const response = await fetch(`/greeting`);
+    const greetings = await response.json();
 
-async function fetchTodoById(id) {
-  try {
-    const response = await fetch(`/todo/${id}`);
-    const todo = await response.json();
-    return todo;
+    greetingMessage.innerHTML = greetings + ' people said hello from EuroRust!';
   } catch (error) {
-    console.error(`Error fetching todo with ID ${id}:`, error);
+    console.error(`Error fetching greetings`, error);
     return null;
   }
 }
 
-async function addTodo() {
-  const note = todoInput.value.trim();
-  if (note === "") return;
-
+async function addGreeting() {
   try {
-    const response = await fetch("/todo", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ note }),
+    const response = await fetch('/greeting', {
+      method: 'PUT',
     });
-
     if (response.ok) {
-      todoInput.value = "";
-      fetchTodos();
+      let greetings = await response.json();
+      greetingMessage.innerHTML =
+        greetings + ' people said hello from EuroRust!';
     } else {
-      console.error("Failed to add todo.");
+      console.error('Failed to add greeting.');
     }
   } catch (error) {
-    console.error("Error adding todo:", error);
+    console.error('Error adding greeting:', error);
   }
 }
 
-fetchTodos();
+fetchGreetings();
