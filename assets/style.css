@@ -1,8 +1,22 @@
-h1 {
+/* Reset some default styles */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+/* Style header */
+header {
   text-align: center;
   background-color: #333;
   color: #fff;
-  padding: 10px;
+  padding: 20px; /* Increased padding for better visibility */
+}
+
+/* Style main content section */
+.main-content {
+  text-align: center; /* Center-align the content within this section */
+  margin-top: 20px;
 }
 
 h2 {
@@ -10,18 +24,20 @@ h2 {
   margin-top: 20px;
 }
 
-#todoInput {
-  width: 70%;
-  padding: 5px;
-  margin-right: 10px;
+/* Style centered button */
+.centered-button {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px; /* Add some spacing between the button and headings */
 }
 
 button {
-  padding: 5px 10px;
+  padding: 10px 20px; /* Increase padding for a larger button */
   background-color: #007bff;
   color: #fff;
   border: none;
   cursor: pointer;
+  font-size: 1.2rem; /* Increase font size for better visibility */
 }
 
 ul {
@@ -30,5 +46,28 @@ ul {
 }
 
 li {
-  margin: 5px 0;
+  margin: 10px 0; /* Add some spacing between list items */
+}
+
+button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2rem;
+  transition: background-color 0.3s ease, transform 0.2s ease; /* Add transitions for background color and transform */
+  transform-origin: center; /* Set the transform origin to the center of the button */
+}
+
+/* Change the button color when hovered */
+button:hover {
+  background-color: #0056b3;
+}
+
+/* Add a scale effect when the button is clicked */
+button:active {
+  background-color: #004d99;
+  transform: scale(0.95); /* Scale the button down slightly when clicked */
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3); /* Add a subtle box shadow when clicked */
 }

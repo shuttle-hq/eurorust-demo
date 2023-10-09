@@ -1,6 +1,1 @@
-DROP TABLE IF EXISTS todos;
-
-CREATE TABLE todos (
-  id serial PRIMARY KEY,
-  note TEXT NOT NULL
-);
+CREATE SEQUENCE IF NOT EXISTS serial START 1;
