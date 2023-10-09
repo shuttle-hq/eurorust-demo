@@ -3,18 +3,23 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Todo App</title>
+    <title>EuroRust Greetings</title>
     <link rel="stylesheet" href="assets/style.css" />
   </head>
   <body>
-    <h1>Todo App</h1>
+    <header>
+      <h1>EuroRust Greetings</h1>
+    </header>
 
-    <h2>Add Todo</h2>
-    <input type="text" id="todoInput" placeholder="Enter a new todo" />
-    <button onclick="addTodo()">Add</button>
+    <section class="main-content">
+      <h2>Add Greeting</h2>
+      <div class="centered-button">
+        <button id="addButton" onclick="addGreeting()">Add</button>
+      </div>
 
-    <h2>Todos</h2>
-    <ul id="todoList"></ul>
+      <h2>Greetings</h2>
+      <ul id="greetingMessage"></ul>
+    </section>
 
     <script src="assets/script.js"></script>
   </body>
