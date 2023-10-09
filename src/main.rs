@@ -1,13 +1,12 @@
-async fn hello_axum() -> &'static str {
-    "Hello from Axum!"
+use axum::routing::{get, Router};
+
+async fn hello_shuttle() -> &'static str {
+    "Hello from Shuttle!"
 }
 
-#[tokio::main]
-async fn main() {
-    let app = axum::Router::new().route("/", axum::routing::get(hello_axum));
+#[shuttle_runtime::main]
+async fn shuttle_main() -> shuttle_axum::ShuttleAxum {
+    let router = Router::new().route("/", get(hello_shuttle));
 
-    axum::Server::bind(&"0.0.0.0:8000".parse().unwrap())
-        .serve(app.into_make_service())
-        .await
-        .unwrap();
+    Ok(router.into())
 }
