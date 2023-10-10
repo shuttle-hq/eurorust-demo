@@ -1,8 +1,8 @@
 mod error;
 mod handler;
 
+use anyhow::Context;
 use axum::{routing::get, Router};
-use shuttle_runtime::CustomError;
 use sqlx::{Executor, PgPool};
 use tower_http::services::ServeDir;
 
@@ -14,7 +14,7 @@ async fn hello_shuttle() -> &'static str {
 async fn shuttle_main(#[shuttle_shared_db::Postgres] pool: PgPool) -> shuttle_axum::ShuttleAxum {
     pool.execute(include_str!("../migrations/schema.sql"))
         .await
-        .map_err(CustomError::new)?;
+        .context("failed to run migration")?;
 
     let router = Router::new()
         .route("/", get(hello_shuttle))
