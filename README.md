@@ -9,7 +9,7 @@ The demo consists of two steps:
 
 ## Running the Demo 🏃
 
-First, run [`git-history`](https://github.com/pomber/git-history) in a separate terminal:
+You can visualize each change easily by going [here](https://github.githistory.xyz/shuttle-hq/eurorust-demo/blob/main/src/main.rs), or by running [`git-history`](https://github.com/pomber/git-history) yourself in a separate terminal:
 
 ```sh
 npx git-file-history src/main.rs
